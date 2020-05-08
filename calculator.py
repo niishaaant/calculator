@@ -1,98 +1,78 @@
 from tkinter import *
 
-# globally declare the expression variable
+
 expression = ""
 
 
-# Function to update expressiom
-# in the text entry box
+
+
 def press(num):
 
-    #gloval used to change a variable outside current scope
+
     global expression
 
-    # concatenation(combining) of string
-    expression = expression + str(num)
-    # str = string
 
-    # update the expression by using set method
+    expression = expression + str(num)
     equation.set(expression)
 
 
-# Function to evaluate the final expression
-def equalpress():
-    # Try and except statement is used
-    # for handling the errors like zero
-    # division error etc.
 
-    # Put that code inside the try block
-    # which may generate the error
+def equalpress():
+
     try:
 
         global expression
 
-        # eval function evaluate the expression
-        # and str function convert the result
-        # into string
+
+
         total = str(eval(expression))
 
         equation.set(total)
 
-        # initialze the expression variable
-        # by empty string
+
         expression = ""
 
-        # if error is generate then handle
-    # by the except block
+
     except:
 
         equation.set(" error ")
         expression = ""
 
-    # Function to clear the contents
 
 
-# of text entry box
+
+
+
 def clear():
     global expression
     expression = ""
     equation.set("")
 
 
-# Driver code
+
 if __name__ == "__main__":
-    # create a GUI window
+
     gui = Tk()
 
-    # set the background colour of GUI window
+
     gui.configure(background="gray")
 
-    # set the title of GUI window
+
     gui.title("Calculator")
 
-    # set the configuration of GUI window
+
     gui.geometry("245x240")
 
-    # StringVar() is the variable class
-    # we create an instance of this class
-    # equatin can be user as a sting with functins like set
     equation = StringVar()
 
-    # create the text entry box for
-    # showing the expression .
+
     expression_field = Entry(gui, textvariable=equation,bg='gray')
 
-    # grid method is used for placing
-    # the widgets at respective positions
-    # in table like structure .
+
     expression_field.grid(columnspan=4, rowspan=1, ipadx=60, ipady=20)
 
     equation.set('0')
 
-    # create a Buttons and place at a particular
-    # location inside the root window .
-    # when user press the button, the command or
-    # function affiliated to that button is executed .
     button1 = Button(gui, text=' 1 ', fg='black', bg='white',
                      command=lambda: press(1), height=1, width=7)
     button1.grid(row=2, column=0, ipady=5)
@@ -170,5 +150,4 @@ if __name__ == "__main__":
     Bracclose = Button(gui,text=')', fg='black', bg='white',
                        command=lambda: press(')'),height=1, width=7)
     Bracclose.grid(row=6, column=2,ipady=5)
-    # start the GUI
     gui.mainloop()
